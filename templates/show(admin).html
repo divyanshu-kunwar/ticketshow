@@ -1,0 +1,64 @@
+{%extends "base3.html" %} 
+
+{%block title %} {{title}} {% endblock %}
+
+{%block content %}
+
+<link rel="stylesheet" href="/static/styles/show(admin).css">
+
+
+
+<div class="mainContainer">
+        <div class="top_center">
+            <a href="/admin/show/add/" class="bordered_btn">Add New Show</a>
+        </div>
+        <div id="show_grid">
+            {% for show in shows %}
+           
+            <div class="show">
+                <div class="imageContainer">
+                  <img src="{{show.image_url}}" alt="" />
+                </div>
+          
+                <div class="ratingContainer">
+                  <span class="rating">
+                    {{show.rating/10}}
+                    <img src="/static/media/star.svg" alt="" />
+                  </span>
+          
+                  (<span class="noOfRating">{{show.no_of_ratings}}</span>)
+                </div>
+          
+                <div class="name">{{show.name}}</div>
+          
+                <div class="tagContainer">
+                  {% for tag in show.tags %}
+                  <div class="tag">{{tag}}</div>
+                  {% endfor %}
+                </div>
+          
+                <div class="desc flexible">
+                  {{ show.description[0:80] }} 
+                  {% if show.description|length > 80 %} ... {% endif %}
+                </div>
+
+                <div class="schedule_action actions">
+                    <a class=" _btn" href="/admin/show/edit/{{show.showid}}">
+                      <img src="/static/media/edit_icon.svg" alt="" />
+                    </a>
+              
+                    <a class="_btn" 
+                    onclick='showPrompt("/api/shows/?id={{show.showid}}")'>
+                      <img src="/static/media/delete_icon.svg" alt="" />
+                    </a>
+                </div>
+          
+            
+            </div>
+
+            {% endfor %}
+        </div>
+
+</div>
+
+{% endblock %}

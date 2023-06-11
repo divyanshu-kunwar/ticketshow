@@ -1,0 +1,434 @@
+* {
+  box-sizing: border-box;
+}
+
+#profile_container {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: 3rem auto;
+  color: var(--text_1);
+  position: relative;
+}
+
+/* Left Section with User Details */
+#profile_container_left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: auto;
+}
+
+#profile_picture {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin: 3rem auto 2rem;
+}
+
+#profile_picture img {
+  width: 100%;
+  object-fit: cover;
+}
+
+#logout_btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.user_info {
+  width: 60%;
+  min-width: 400px;
+  margin: 2rem auto 3rem;
+  color: var(--text_2);
+  display: flex;
+  flex-direction: column;
+}
+
+.user_info input {
+  background-color: var(--surface_elevated);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
+.user_info input:hover {
+  box-shadow: 0 0 0 2px #ea4c89aa;
+}
+
+.user_info input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #ea4c8999;
+  opacity: 1;
+}
+
+.user_info input:focus::placeholder {
+  color: transparent;
+}
+
+.controls {
+  width: 60%;
+  min-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.disabledBtn,
+.disabledBtn:hover {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.active {
+  background-color: var(--primary_color);
+  border: none;
+}
+
+/* Right Section with Booking Details */
+#profile_container_right {
+  width: 40%;
+}
+
+#profile_container_right .heading{
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.booked_shows_info {
+  background-color: var(--surface_elevated);
+  padding: 3rem;
+  border-radius: 4px;
+  min-width: 450px;
+  max-width: 620px;
+  margin: 0 auto 3.5rem;
+  position: relative;
+  border-radius: 12px;
+}
+
+
+
+.date_container{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary_color);
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  font-size: 1rem;
+  padding: .6rem 1.2rem !important;
+}
+
+.punch{
+  position: absolute;
+  background-color: var(--surface_color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  z-index: 1;
+  top:11rem; 
+}
+
+.left_punch{
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.right_punch{
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+
+
+
+
+/* Ticket Details */
+.ticket_info{
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem auto 3rem;
+}
+
+.ticket_info .details{
+  width: 65%;
+}
+.ticket_info .details .qr_code img{
+  width: 100%;
+}
+
+.ticket_info .booking_id{
+  margin: 0 0 .3rem .3rem;
+  font-size: .9rem;
+  word-spacing: 1px;
+  letter-spacing: 2px;
+  color: var(--text_2);
+}
+
+.ticket_info .quantity{
+  width: 25%;
+}
+
+.quantity .quantity_number{
+  display: flex;
+  align-items: center;
+}
+
+.quantity .quantity_number span{
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--primary_color);
+  margin-right: .4rem;
+}
+
+.quantity .quantity_value{
+  font-size: .8rem;
+  color: var(--text_2);
+  letter-spacing: 1px;
+}
+
+.quantity .quantity_value span{
+  margin: 0 .2rem;
+}
+
+
+.event_show_image img{
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
+/* Event Info */
+.show_info{
+  display: flex;
+  justify-content: space-between;
+}
+
+.show_info .name{
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text_1);
+}
+
+.show_info .info{
+  margin-top: 2rem;
+}
+
+.show_info .info{
+  color: var(--text_2);
+  font-size: 1.3rem;
+  margin-bottom: .8rem;
+}
+
+.show_info .venue{
+  color: var(--text_2);
+  font-size: 1.0rem;
+  margin-bottom: .5rem;
+}
+
+
+
+/* Vertical and Horizontal Lines */
+.vertical_line {
+  position: absolute;
+  height: 100%;
+  border: 2px solid var(--surface_elevated);
+  top: 0;
+  left: 54%;
+}
+
+.horizontal_line {
+  position: absolute;
+  width: 100%;
+  border: 2px solid var(--surface_elevated);
+  top: 565px;
+  left: 0;
+  display: none;
+}
+
+/* Media Queries */
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  #profile_container {
+    width: 90%;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  #profile_container_left,
+  #profile_container_right {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  #profile_container_right {
+    margin-top: 20px;
+  }
+
+  .vertical_line {
+    display: none;
+  }
+
+  .horizontal_line {
+    display: block;
+  }
+
+  .user_info,
+  .controls {
+    width: 65%;
+  }
+
+  .booked_shows_info {
+    width: 80%;
+    margin: 0 auto 3.5rem;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  #profile_container {
+    width: 90%;
+    flex-direction: column;
+    margin: 10px auto;
+  }
+
+  #profile_container_left,
+  #profile_container_right {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  #profile_container_right {
+    margin-top: 20px;
+  }
+
+  .vertical_line {
+    display: none;
+  }
+
+  .horizontal_line {
+    display: block;
+  }
+  .user_info,
+  .controls {
+    width: 80%;
+  }
+
+  .booked_shows_info {
+    min-width: 420px;
+    margin: 0 auto;
+    margin: 0 auto 3.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #profile_container {
+    width: 90%;
+    flex-direction: column;
+    margin: 10px auto;
+  }
+
+  #profile_container_left,
+  #profile_container_right {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  #profile_container_right {
+    margin-top: 20px;
+  }
+
+  .vertical_line {
+    display: none;
+  }
+
+  .horizontal_line {
+    display: block;
+  }
+
+  .user_info,
+  .controls {
+    width: 90%;
+  }
+
+  .booked_shows_info {
+    min-width: 420px;
+    margin: 0 auto;
+    margin: 0 auto 3.5rem;
+  }
+}
+
+.feedback{
+  width: fit-content;
+  padding: 14px 28px;
+  background-color: var(--surface_elevated);
+  border: 1px solid var(--primary_color);
+  color: var(--primary_color);
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  border-radius: 4px;
+}
+
+.feedback:hover{
+  background-color: var(--surface_color);
+  border: 1px solid var(--surface_elevated);
+  color: var(--text_1);
+
+}
+
+.rate {
+  float: left;
+  height: 46px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: var(--primary_color);
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: var(--primary_color);
+  opacity: 0.7;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: var(--primary_color);
+  opacity: 0.9;
+}
+
+#RatingContainer{
+  position: fixed;
+  /* center */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 60px;
+  background-color: var(--surface_color);
+  border: 1px solid var(--surface_elevated);
+  display: none;
+}

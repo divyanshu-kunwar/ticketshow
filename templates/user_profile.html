@@ -1,0 +1,108 @@
+{%extends "base2.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/styles/user_profile.css" />
+
+<div id="profile_page">
+
+
+        <!-- Profile Page -->
+        <div id="profile_container">
+
+                <div id="profile_container_left">
+
+                        <div id="profile_picture">
+                                <img src="static/media/dummy_dp.png" alt="">
+                        </div>
+                        
+                        <div id="logout_btn">
+                                <div class="bordered_btn" onclick="logout()"> Logout</div>
+                        </div>
+
+                        <div class="user_info">
+                                <input id="name" class="details" placeholder="Name"></input>
+                                <input id="user_email" class="details" placeholder="Email"></input>
+                        </div>
+
+                        <div class="controls">
+                                <div class="bordered_btn disabledBtn" id="update_profile">Update Profile</div>
+                        </div>
+
+                        <div class="user_info">
+                                <input id="curr_password" class="details" placeholder="Current Password" type="password"></input>
+                                <input id="new_password" class="details" placeholder="New Password" type="password"></input>
+                        </div>
+
+                        <div class="controls">
+                                <div class="bordered_btn disabledBtn" id="change_passsword">Change Password</div>
+                        </div>
+                </div>
+
+                <div class="divider vertical_line"></div>
+                <div class="divider horizontal_line"></div>
+
+                <div id="profile_container_right">
+
+                        <div class="heading"> Your Tickets </div>
+
+                </div>
+        </div>
+
+        <div id="RatingContainer">
+
+                <div>
+                        <div style="display: none;">
+                        <div id="venueid"></div>
+                        <div id="showid"></div>
+                        <div id="bookingid"></div>
+                        <div id="show_rating"></div>
+                        <div id="venue_rating"></div>
+                        </div>
+                        <p>Give Rating to Show</p>
+                        <div class="rate">
+                                <input type="radio" id="star5show" name="rateshow" value="5" />
+                                <label for="star5show" title="text">5 stars</label>
+                                <input type="radio" id="star4show" name="rateshow" value="4" />
+                                <label for="star4show" title="text">4 stars</label>
+                                <input type="radio" id="star3show" name="rateshow" value="3" />
+                                <label for="star3show" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rateshow" value="2" />
+                                <label for="star2show" title="text">2 stars</label>
+                                <input type="radio" id="star1show" name="rateshow" value="1" />
+                                <label for="star1show" title="text">1 star</label>
+                        </div>
+                </div>
+
+                <div>
+                        <p>Give Rating to Venue</p>
+                        <div class="rate">
+                                <input type="radio" id="star5venue" name="ratevenue" value="5" />
+                                <label for="star5venue" title="text">5 stars</label>
+                                <input type="radio" id="star4venue" name="ratevenue" value="4" />
+                                <label for="star4venue" title="text">4 stars</label>
+                                <input type="radio" id="star3venue" name="ratevenue" value="3" />
+                                <label for="star3venue" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="ratevenue" value="2" />
+                                <label for="star2venue" title="text">2 stars</label>
+                                <input type="radio" id="star1venue" name="ratevenue" value="1" />
+                                <label for="star1venue" title="text">1 star</label>
+                        </div>
+                </div>
+
+                <br>
+                <div style="display: flex; justify-content: space-between; ">
+                        <div class="bordered_btn" onclick="setRating()">Apply</div>
+                        <div class="bordered_btn" onclick="closeRating()">Close</div>
+                </div>
+
+        </div>
+
+        <script src="/static/javascript/user_profile.js"></script>
+
+
+</div>
+
+{% endblock %}

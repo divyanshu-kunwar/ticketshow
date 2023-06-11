@@ -1,0 +1,116 @@
+{%extends "base2.html" %} {% block title %}Dashboard{% endblock %} 
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/styles/dashboard.css" />
+
+<div id="browse_page">
+
+  <div id="top_tabs">
+    <span onclick="switch_tab(0)" id="showtab" class="selected">Shows</span>
+    <span onclick="switch_tab(1)" id="theatretab" >Theatre</span>
+    <span class="filter show">
+      <img class="filtor_icon " src="static/media/filter.svg" alt=""></span>
+  </div>
+  
+<div class="show_feed_grid">
+    {% for show in data["shows"] %}
+    <a class="show_cards" href="/show_detail/{{show.showid}}">
+      <div class="fwidth_cards">
+        <img src="{{show['image_url']}}" width="180px" height="320px" />
+        <p>{{ show.name }}</p>
+        <span>{{ show.rating/10 }}</span>
+        <span>{{ show.description[0:120]}}..</span>
+      </div>
+    </a>
+    {% endfor %}
+    {% for venue in data["venue"] %}
+    <a class="venue_cards" style="display: none;"
+     href="/venue_detail/{{venue.venueid}}">
+      <div class="fwidth_cards" >
+        <p>{{ venue.name }}</p>
+        <span>{{ venue.city_town }}</span>
+        <span>{{ venue.location_desc }}</span>
+      </div>
+    </a>
+    {% endfor %}
+
+</div>
+
+  <div id="sidebar" class="sidebar">
+    <form>
+      <div class="controls">
+        <a href="/dashboard/" > Clear Filters </a><br>
+      </div>
+
+      <div class="form_group">
+        <div>Location</div>
+        <select name="city" id="city">
+          {% for city in filter_data["city"] %}
+          <option value="{{ city }}">{{ city }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form_group">
+        <div>Rating</div>
+
+        <div class="rate">
+          <input type="radio" id="star5" name="rate" value="5" />
+          <label for="star5" title="text">5 stars</label>
+          <input type="radio" id="star4" name="rate" value="4" />
+          <label for="star4" title="text">4 stars</label>
+          <input type="radio" id="star3" name="rate" value="3" />
+          <label for="star3" title="text">3 stars</label>
+          <input type="radio" id="star2" name="rate" value="2" />
+          <label for="star2" title="text">2 stars</label>
+          <input type="radio" id="star1" name="rate" value="1" />
+          <label for="star1" title="text">1 star</label>
+        </div>
+
+      </div>
+
+
+      <div class="form_group_v">
+        <div class="controls">
+          <div class="tag_title">Language</div>
+        </div>
+        <div class="checkbox_container">
+          {% for language in filter_data["language"] %}
+          <div>
+            <input type="checkbox" id="{{language}}" name="language" value="{{language}}" />
+            <label for="{{language}}">{{language}}</label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- rating 0 - 5 -->
+      <!-- check boxes -->
+      <div class="form_group_v">
+
+        <div class="controls">
+          <div class="tag_title">Tags</div>
+        </div>
+
+        <div class="checkbox_container">
+          {% for tag in filter_data["tags"] %}
+          <!-- check boxes -->
+          <div>
+            <input type="checkbox" id="{{tag}}" name="tag" value="{{tag}}" />
+            <label for="{{tag}}">{{tag}}</label>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="bordered_btn"> Apply </div>
+      <br>
+    </form>
+  </div>
+
+</div>
+
+<script src="/static/javascript/dashboard.js"></script>
+
+{% endblock %}

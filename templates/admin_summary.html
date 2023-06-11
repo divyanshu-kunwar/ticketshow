@@ -1,0 +1,173 @@
+{%extends "base3.html" %} {%block content %}
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #venueDetails {
+    width: 70%;
+    min-width: 450px;
+    margin: 0 auto 5rem;
+    background-color: #1a1a1a;
+    color: white;
+    font-size: large;
+    padding: 1rem 2rem;
+    border-left: 8px solid var(--primary_color);
+    border-right: 8px solid var(--primary_color);
+  }
+
+  #mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3rem;
+  }
+
+  #Section1,
+  #Section2 {
+    height: 100%;
+    padding: 2rem;
+  }
+
+  #Section1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #Section2 {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 1000px;
+    border-collapse: collapse;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    font-size: large;
+    background-color: var(--surface_elevated);
+  }
+
+  thead {
+    background-color: var(--primary_color);
+    opacity: 0.8;
+  }
+
+  td,
+  th {
+    border: 2px solid var(--surface_color);
+    padding: 0.7rem;
+    text-align: center;
+    width: fit-content;
+  }
+
+  .rating img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .rating {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    margin: 8px;
+  }
+  .rating span {
+    margin-left: 10px;
+    font-size: small;
+  }
+  .gray_star {
+    filter: grayscale(100%);
+  }
+</style>
+
+<div id="mainContainer">
+  <div id="venueDetails">
+    <h1>{{venue_detail.name}}</h1>
+    <br />
+    <h3>{{venue_detail.city_town}}</h3>
+    <br />
+    <p>{{venue_detail.location_desc}}</p>
+    <br />
+
+    <div class="rating">
+      {% for i in range((venue_detail.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" />
+      {% endfor %} {% for i in range(5 - (venue_detail.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" class="gray_star" />
+      {% endfor %}
+      <span>
+        {{ venue_detail.rating/10 }} ({{ venue_detail.no_of_rating }})
+      </span>
+    </div>
+  </div>
+
+  <div id="Section1">
+    <!-- a plot using p5.js -->
+    <object
+      type="text/html"
+      data="/static/rating.html"
+      width="600px"
+      height="400px"
+    ></object>
+
+    <object
+    type="text/html"
+    data="/static/tags.html"
+    width="600px"
+    height="400px"
+  ></object>
+
+  <object
+  type="text/html"
+  data="/static/booked_seats.html"
+  width="600px"
+  height="400px"
+></object>
+
+  </div>
+
+  <div id="Section2">
+    <table id="showsTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time(24H)</th>
+          <th>Show Name</th>
+          <th>Language</th>
+          <th>Booked</th>
+          <th>Total</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {%for key in show%} {%for schedule in show[key].schedules %}
+        <tr>
+          <td>{{schedule.start_time[0:10]}}</td>
+          <td>{{schedule.start_time[10:16]}}</td>
+          <td>{{show[key].name}}</td>
+          <td>{{schedule.language}}</td>
+          <td>{{schedule.booked_seats}}</td>
+          <td>{{schedule.total_seats}}</td>
+          <td>{{schedule.price}}</td>
+        </tr>
+        {%endfor%} {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

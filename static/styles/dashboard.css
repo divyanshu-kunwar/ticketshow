@@ -1,0 +1,265 @@
+.fwidth_cards {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 5px;
+  padding-bottom: 10px;
+  width: 180px;
+}
+.fwidth_cards span {
+  display: block;
+  font-size: small;
+  padding: 4px 15px;
+}
+.fwidth_cards p {
+  display: block;
+  font-weight: bold;
+  margin: 0%;
+  padding: 10%;
+  padding: 15px;
+}
+
+#browse_page {
+  display: grid;
+  grid-template-areas:
+    "tabs tabs tabs blank"
+    "gallery gallery gallery filter";
+  margin-bottom: 40px;
+  position: relative;
+}
+
+#top_tabs {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 3vw;
+  grid-area: tabs;
+}
+
+#top_tabs span {
+  font-size: x-large;
+  padding-right: 20%;
+  opacity: 0.7;
+}
+
+#top_tabs .selected {
+  opacity: 0.9;
+}
+
+#top_tabs span:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.filter {
+  display: none;
+  position: absolute;
+}
+
+.filter img {
+  width: 30px;
+}
+
+.show_feed_grid {
+  grid-area: gallery;
+  margin-left: 3vw;
+  justify-content: start;
+  align-items: flex-start;
+}
+
+#sidebar {
+  min-width: 300px;
+  max-width: 350px;
+  padding: 30px 30px;
+  grid-area: filter;
+  height: fit-content;
+  margin: 0% 50px;
+  border-radius: 8px;
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0px 2rem;
+}
+
+.form_group select {
+  padding: 0.7rem 1rem 0.7rem 1.5rem;
+  border-radius: 4px;
+  background-color: var(--surface_color);
+  color: var(--text_1);
+  border: none;
+  font-size: 1rem;
+}
+
+.form_group select:focus {
+  outline: none;
+}
+
+.rate {
+  float: left;
+  height: 46px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: var(--primary_color);
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: var(--primary_color);
+  opacity: 0.7;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: var(--primary_color);
+  opacity: 0.9;
+}
+
+.form_group > div {
+  margin: 5px 0px;
+}
+
+.form_group_v {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+.form_group_v .controls {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 1.5rem;
+}
+
+.form_group_v .controls .tag_title {
+  color: var(--primary_color);
+}
+
+.form_group_v .controls .tag_clear:hover {
+  color: var(--primary_color);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: color 0.3s ease-in-out;
+}
+
+.form_group_v .checkbox_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -0.8rem;
+}
+
+.form_group_v .checkbox_container > div {
+  margin: 0.3rem 0.8rem;
+  padding: 10px 0;
+}
+
+.form_group_v .checkbox_container label {
+  border-radius: 4px;
+  padding: 10px 15px;
+  color: var(--primary_color);
+  transition: background-color 0.4s ease-in-out;
+  display: flex;
+  min-width: 50px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primary_color);
+  box-shadow: #ffffff1f 1px 1px 3px, #ffffff3d 1px 1px 2px,
+    #ffffff1f -1px -1px 3px, #ffffff3d -1px -1px 2px;
+}
+
+.form_group_v .checkbox_container label:hover {
+  cursor: pointer;
+  background-color: var(--primary_color);
+  opacity: 0.7;
+  color: var(--surface_color);
+}
+
+.form_group_v .checkbox_container input[type="checkbox"] {
+  display: none;
+}
+
+.form_group_v .checkbox_container input[type="checkbox"]:checked ~ label {
+  background-color: var(--primary_color);
+  color: var(--surface_color);
+}
+
+
+
+@media screen and (max-width: 800px) {
+  #top_tabs {
+    margin-bottom: 3rem;
+  }
+
+  .filter {
+    display: block;
+    top: 1.5%;
+    padding: 0 !important;
+    right: 10%;
+    float: right;
+    z-index: 11;
+  }
+
+  #sidebar {
+    min-width: 75%;
+    margin-bottom: 3.5rem;
+  }  
+
+  #sidebar form{
+    min-width: 320px;
+    max-width: 350px;
+    margin: 30px auto;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .show_feed_grid {
+    justify-content: space-between;
+  }
+
+  #browse_page{
+    grid-template-areas:
+        /* "tabs gallery tabs" */
+        "tabs tabs blank "
+        "filter filter filter"
+        "gallery gallery gallery";
+  }
+
+  .show{
+    display: flex;
+
+  }
+
+  .hidden{
+    display: none;
+  }
+}
+
+
+
+
+

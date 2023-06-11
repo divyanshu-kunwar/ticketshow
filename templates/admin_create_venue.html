@@ -1,0 +1,120 @@
+{%extends "base3.html" %} {%block content %}
+<link rel="stylesheet" href="/static/styles/admin_create_venue.css" />
+
+<div id="formContainer">
+  <h1>Create Venue</h1>
+
+  <div class="inputContainer">
+    <input type="text" id="name" placeholder="Venue Name" />
+  </div>
+
+  <div class="inputContainer">
+    <input type="text" id="location_desc" placeholder="location Description" />
+  </div>
+
+  <div id="location">
+    <div id="coordinates" style="display:none;">
+      <div class="inputContainer" >
+        <input type="number" id="coordinatesX" placeholder="coordinatesX" value="10"/>
+      </div>
+
+      <div class="inputContainer">
+        <input type="number" id="coordinatesY" placeholder="coordinatesY" value="10"/>
+      </div>
+    </div>
+
+
+
+
+    <div class="location_right">
+      <div class="select">
+        <select id="city">
+          {%for city in cities%}
+          <option class="option" value="{{city.tagname}}">{{city.tagname}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="bordered_btn btn locationBtn" onclick="addNewLoaction()">Add new Loaction</div>
+    </div>
+
+  </div>
+
+  <div class="bordered_btn btn" onclick="createVenue()">Create Venue</div>
+</div>
+
+<script>
+
+
+
+  function createVenue() {
+    name = document.getElementById("name").value;
+    location_desc = document.getElementById("location_desc").value;
+    coordinatesX = document.getElementById("coordinatesX").value;
+    coordinatesY = document.getElementById("coordinatesY").value;
+    city = document.getElementById("city").value;
+    adminname = localStorage.getItem("adminname");
+    token = localStorage.getItem("token");
+
+    // convert coordinate to float
+    coordinatesX = parseFloat(coordinatesX);
+    coordinatesY = parseFloat(coordinatesY);
+
+    var data = {
+      admin_name: adminname,
+      token: token,
+      name: name,
+      location_desc: location_desc,
+      coordinates: [coordinatesX, coordinatesY],
+      city_town: city,
+    };
+
+    fetch("/api/venue", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        window.alert(data.message);
+        window.location.href = "/admin/dashboard";
+      });
+  }
+
+  function addNewLoaction() {
+    let location = prompt("Please enter new location", "New Location");
+    if (location != null) {
+      let data = {
+        admin_name: localStorage.getItem("adminname"),
+        token: localStorage.getItem("token"),
+        tagname: location,
+        tagtype: 'city'
+      }
+
+      fetch("/api/filters/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          window.alert(data.message);
+          window.location.href = "/admin/venue/add";
+        });
+
+    }
+  }
+
+</script>
+
+{% endblock %}

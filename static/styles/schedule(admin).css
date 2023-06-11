@@ -1,0 +1,236 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#main_area {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;;
+}
+
+
+
+
+#venue_detail_area {
+  width: 390px;
+  height: fit-content;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface_elevated);
+  border-left: 8px solid var(--primary_color);
+}
+
+#venue_detail_area .name {
+  font-size: xx-large;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+#venue_detail_area .city {
+  font-size: large;
+  margin-bottom: 10px;
+}
+
+#venue_detail_area .location_desc {
+  font-size: small;
+  color: var(--primary_color);
+  margin-bottom: 10px;
+}
+
+.gray_star {
+  filter: grayscale(100%);
+}
+
+#venue_detail_area .rating img {
+  width: 20px;
+  height: 20px;
+}
+
+#venue_detail_area .rating {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+#venue_detail_area .rating span {
+  margin-left: 10px;
+  font-size: small;
+}
+
+
+
+
+
+#schedule_form {
+  width: 70%;
+  margin-left: 3rem;
+}
+
+#schedule_form .container {
+  flex-direction: column;
+  display: flex;
+  background-color: var(--surface_elevated);
+  width: 70%;
+  margin: 0 auto;
+  padding: 2rem;
+  justify-content: space-between;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.label select {
+  padding: 1rem 2rem 1rem 1.5rem;
+  border-radius: 4px;
+  background-color: var(--surface_color);
+  color: var(--text_1);
+  border: none;
+  font-size: 1rem;
+  width: 40%;
+  min-width: 250px;
+  height: fit-content;
+}
+
+.label select:focus {
+  outline: none;
+}
+
+
+
+#inputContainer {
+  margin-top: 2rem;
+}
+
+#inputContainer input {
+  font-size: large;
+  background-color: var(--surface_color);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  opacity: 0.6;
+  width: 100%;
+}
+
+#inputContainer input:hover {
+  box-shadow: 0 0 0 2px #ea4c89aa;
+}
+
+#inputContainer input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #ea4c8999;
+  opacity: 1;
+}
+
+#inputContainer input:focus::placeholder {
+  color: transparent;
+}
+
+#schedule_form .bordered_btn {
+  margin: 1rem;
+  margin-left: 0;
+  width: 150px;
+  text-align: center;
+}
+
+
+input[type="date"]{
+    padding: 15px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-family: "Roboto Mono",monospace;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+::-webkit-calendar-picker-indicator{
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+
+#schedule_form #submit {
+  width: 130px;
+}
+
+@media screen and (min-width: 870px) and (max-width: 1150px) {
+  #main_area {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #schedule_form {
+    width: 100%;
+    margin: 0;
+  }
+
+  #schedule_form .container {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    width: 80%;
+    min-width: 400px;
+    border-right: 8px solid var(--primary_color);
+  }
+}
+
+@media screen and (max-width: 870px) {
+  #main_area {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  #venue_detail_area {
+    margin: 0 auto;
+    width: 80%;
+    min-width: 450px;
+    align-items: center;
+    background-color: var(--surface_elevated);
+    border-left: 8px solid var(--primary_color);
+    border-right: 8px solid var(--primary_color);
+  }
+
+  #venue_detail_area .rating {
+    margin-top: .5rem;
+    width: fit-content;
+  }
+
+  #schedule_form {
+    width: 100%;
+    min-width: 400px;
+    margin: 0;
+  }
+
+  .label {
+    flex-direction: column;
+    padding-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .label select {
+    width: 100%;
+  }
+
+  #schedule_form .container {
+    width: 80%;
+    min-width: 450px;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+}

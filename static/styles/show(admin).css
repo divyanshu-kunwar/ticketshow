@@ -1,0 +1,112 @@
+#show_grid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.show{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 10px;
+    background-color: var(--surface_elevated);
+    color: var(--text_2);
+    border-radius: 8px;
+}
+
+.ratingContainer{
+    position: absolute;
+    background-color: var(--primary_color);
+    margin-left: 140px;
+    padding: 2px 4px;
+    border-radius: 4px 0px 0px 4px;
+    font-size: small;
+}
+
+.imageContainer{
+    width: 200px;
+    height: 320px;
+}
+
+.imageContainer img{
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.show .name{
+    font-size: x-large;
+    font-weight: 600;
+    margin: 14px 0px;
+    text-align: center;
+}
+
+.tagContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 4px 10px;
+}
+
+.tagContainer .tag{
+    margin: 4px 2px;
+    padding: 2px 8px;
+    border: 1px solid var(--text_2);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.show .desc{
+    margin: 4px 10px;
+    margin-bottom: 20px;
+}
+
+.schedule_action{
+    margin: 4px 20px;
+    margin-bottom: 14px;
+}
+
+.actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+._btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--text_2);
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+._btn:hover{
+    color: var(--primary_color);
+}
+
+._btn img{
+    filter: grayscale(100%) brightness(400%);
+    opacity: 0.7;
+}
+
+._btn:hover img{
+    filter: grayscale(0%) brightness(100%);
+    opacity: 1;
+}
+
+._btn span{
+    margin-left: 10px;
+}
+
+.flexible{
+    flex-grow: 1;
+}
+
+.top_center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

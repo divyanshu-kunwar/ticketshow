@@ -1,0 +1,98 @@
+{%extends "base.html" %} {%block content%}
+
+<link rel="stylesheet" href="static/styles/home.css" />
+
+<div id="center_content">
+  <div id="boy_char">
+    <img src="static/media/backgrounds/11.png" alt="Boy with pop corns" />
+  </div>
+  <div id="content1">
+    <div class="center_top_msg">Hassle Free Ticket Booking</div>
+
+    <div id="center_top_submsg">
+      Next Blockbuster is Now in Your Nearest Cinema, So what You Are Waiting
+      For Sign In To Book Tickets Now ...
+    </div>
+  </div>
+
+  <div id="content2">
+    <div id="feedback_container">
+      <div
+        class="feedbacks"
+        data-position="1"
+        style="left: -110%; display: block"
+      >
+        <h3>Thanks For Saving My Time 1</h3>
+        <div>
+          Once I had to book ticket for my whole class as it was my special day
+          . With Ticket Show I did it within a few clicks.
+        </div>
+        <div class="feed_author">- Micheal Philips</div>
+      </div>
+
+      <!-- Feedback 2 by Aaron-->
+      <div class="feedbacks" data-position="2" style="left: 0%">
+        <h3>Thanks For Saving My Time 2</h3>
+        <div>
+          Once I had to book ticket for my whole class as it was my special day
+          . With Ticket Show I did it within a few clicks.
+        </div>
+        <div class="feed_author">- Micheal Philips</div>
+      </div>
+
+      <!-- Feedback 3 by Aaron-->
+      <div
+        class="feedbacks"
+        data-position="3"
+        style="left: 110%; display: block"
+      >
+        <h3>Thanks For Saving My Time 3</h3>
+        <div>
+          Once I had to book ticket for my whole class as it was my special day
+          . With Ticket Show I did it within a few clicks.
+        </div>
+        <div class="feed_author">- Micheal Philips</div>
+      </div>
+    </div>
+    <div id="feedback_slide_control">
+      <div onclick="change_feedback(1)"></div>
+      <div onclick="change_feedback(2)" data-active="true"></div>
+      <div onclick="change_feedback(3)"></div>
+    </div>
+  </div>
+
+  <div id="girl_char">
+    <img src="static/media/backgrounds/22.png" alt="Girl with soft drink" />
+  </div>
+</div>
+
+<div id="show_feed">
+  {% if data|length > 0 %}
+  <div class="center_top_msg heading_browse">
+    Browse Hundreds Of Shows & Events
+  </div>
+
+  <div class="show_feed_grid">
+
+    {% for svs in data %}
+    <a href="/signin">
+      <div class="fwidth_cards">
+        <img src="{{svs[2]['image_url']}}" width="180px" height="320px" />
+        <p>{{ svs[2].name }}</p>
+        <span>{{ svs[2].rating / 10 }}</span>
+        <span>{{ svs[0].language }}</span>
+        <span>{{ svs[2].description[0:120] }}...</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="center_top_msg">
+    No Shows Found - Login As Admin to add shows
+  </div>
+  {% endif %}
+</div>
+
+<script src="static/javascript/home.js"></script>
+
+{% endblock %}

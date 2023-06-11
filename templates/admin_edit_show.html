@@ -1,0 +1,135 @@
+{%extends "base3.html" %} {%block content %}
+
+<link rel="stylesheet" href="/static/styles/admin_create_show.css" />
+<div id="showid" style="display: none;">{{show.showid}}</div>
+<div id="formContainer">
+  <h1>Edit Show</h1>
+  <form action="">
+    <div id="inputData">
+      <div class="inputContainer">
+        <input type="text" id="name" placeholder="Show Name"
+        value="{{show.name}}"/>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" id="description" placeholder="Show Description"
+        value="{{show.description}}" />
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" id="image_link" placeholder="Show Image Link"
+         value="{{show.image_url}}"/>
+      </div>
+
+      <img id="thumbnail" src="{{show.image_url}}" alt="" />
+    </div>
+
+    <div class="checkbox_container">
+      {% for tag in tags %}
+      <!-- check boxes -->
+      <div>
+      {% if tag.tagname in show.tags %}
+        <input type="checkbox" id="{{tag.tagname}}"  name="tag" value="{{tag.tagname}}" 
+        checked />
+        <label for="{{tag.tagname}}">{{tag.tagname}}</label>
+        {% else %}
+          <input type="checkbox" id="{{tag.tagname}}" name="tag" value="{{tag.tagname}}" />
+          <label for="{{tag.tagname}}">{{tag.tagname}}</label>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <div class="bordered_btn" style="padding: 8px 16px;" onclick="createTag()">
+        Add Tag
+      </div>
+    </div>
+
+  </form>
+  <div class="bordered_btn btn" onclick="updateShow()">Update Show</div>
+</div>
+
+<script>
+
+    document.getElementById("image_link").addEventListener("change", function () {
+        document.getElementById("thumbnail").setAttribute("src", this.value);
+    });
+
+  function updateShow() {
+    name = document.getElementById("name").value;
+    description = document.getElementById("description").value;
+    image_link = document.getElementById("image_link").value;
+    tags = document.getElementsByName("tag");
+    console.log(tags);
+    show_id = document.getElementById("showid").innerHTML;
+    tag_ids = [];
+    for (var i = 0; i < tags.length; i++) {
+      if (tags[i].checked) {
+        tag_ids.push(tags[i].value);
+      }
+    }
+    adminname = localStorage.getItem("adminname");
+    token = localStorage.getItem("token");
+    var data = {
+      adminname: adminname,
+      token: token,
+      name: name,
+      description: description,
+      image: image_link,
+      tags: tag_ids,
+      showid: parseInt(show_id)
+    };
+
+    console.log(data);
+
+    fetch("/api/shows", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        window.alert(data.message);
+        window.location.href = "/admin/shows/";
+      });
+  }
+ 
+  function createTag() {
+    
+    let tag = prompt("Please enter new tag", "New tag");
+    if (tag != null) {
+      let data = {
+        admin_name: localStorage.getItem("adminname"),
+        token: localStorage.getItem("token"),
+        tagname: tag,
+        tagtype: 'tags'
+      }
+
+      fetch("/api/filters/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          window.alert(data.message);
+          if(data)
+          window.location.href = "/admin/show/edit/{{show.showid}}";
+        });
+
+    }
+
+
+  }
+
+
+</script>
+
+{% endblock %}

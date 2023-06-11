@@ -1,0 +1,136 @@
+#show_page{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#show_detail{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    margin: 0 auto;
+    border-right: 2px dotted var(--surface_elevated);
+}
+
+#show_poster{
+    width: 180px;
+    height: 320px;
+    margin-top: -26px;
+}
+
+#show_certificate{
+    width: fit-content;
+    padding: 5px 20px;
+    border-radius: 0px 0px 60px 0px;
+    opacity: 0.7;
+    background-color: var(--primary_color);
+    font-size: small;
+}
+
+#language_list{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+#language_list span{
+    color: var(--primary_color);
+}
+
+#tags{
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#tags span{
+    font-size: medium;
+    padding: 1px 10px;
+    border-radius: 4px;
+    margin-top: 8px;
+    margin-right: 8px;
+    border: 1px solid var(--text_1);
+    opacity: 0.8;
+}
+
+#tags span:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+#ticket_container{
+    padding: 4%;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.ticket{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    background-color: var(--surface_elevated);
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.ticket:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 10px var(--shadow-col);
+}
+
+.ticket .venue_details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.venue_details .name{
+    font-size: xx-large;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.venue_details .address{
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.ticket .dates_container{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--surface_color);
+    
+}
+
+.ticket h2{
+    color: var(--primary_color);
+}
+
+.dates_container .date{
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+}
+
+@media screen and (max-width : 1000px){
+    #show_page{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #show_detail{
+        width: 90%;
+        border-right: none;
+    }
+
+    #ticket_container{
+        margin-top: 5rem;
+        width: 80%;
+    }
+}

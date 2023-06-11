@@ -1,0 +1,278 @@
+#mainContainer{
+    padding: 40px 1%;
+    display: grid;
+    grid-template-areas: 
+    'venue_selector  venue_selector'
+    'venue_area show_area '
+    'blank show_area';
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+#venue_selection_area{
+    grid-area: venue_selector;
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.venue{
+    padding: 18px 20px;
+    border-radius: 4px;
+    min-width: 150px;
+    margin: 10px;
+    text-align: center;
+    background-color: var(--surface_elevated);
+    cursor: pointer;
+    color: var(--text_2);
+}
+
+.selected_venue{
+    border-left: 6px solid var(--primary_color);
+    color: var(--primary_color);
+}
+
+#venue_selection_area .venue .name{
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+#venue_selection_area .venue .location{
+    font-size: large;
+}
+
+#venue_detail_area{
+    grid-area: venue_area;
+    width: max(30% , 300px);
+    display: flex;
+    flex-direction: column;
+    padding: 5% 20px;
+    height: fit-content;
+    background-color: var(--surface_elevated);
+    border-left: 8px solid var(--primary_color);
+}
+
+#show_container_area{
+    grid-area: show_area;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#venue_detail_area .name{
+    font-size: xx-large;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#venue_detail_area .city{
+    font-size: large;
+    margin-bottom: 10px;
+}
+
+.flexible{
+    flex-grow: 1;
+}
+
+#venue_detail_area .location_desc{
+    font-size: small;
+    color: var(--primary_color);
+    margin-bottom: 10px;
+}
+
+.gray_star{
+    filter: grayscale(100%);
+}
+
+#venue_detail_area .rating img{
+    width: 20px;
+    height: 20px;
+}
+
+#venue_detail_area .rating{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+#venue_detail_area .rating span{
+    margin-left: 10px;
+    font-size: small;
+}
+
+.actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px 0px;
+}
+
+._btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--text_2);
+    padding: 8px 10px;
+}
+
+.summary_btn{
+    background-color: var(--surface_color);
+}
+
+._btn:hover{
+    color: var(--primary_color);
+}
+
+._btn img{
+    filter: grayscale(100%) brightness(400%);
+    opacity: 0.7;
+}
+
+._btn:hover img{
+    filter: grayscale(0%) brightness(100%);
+    opacity: 1;
+}
+
+._btn span{
+    margin-left: 10px;
+}
+
+.show{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 10px;
+    background-color: var(--surface_elevated);
+    color: var(--text_2);
+    border-radius: 8px;
+}
+
+.ratingContainer{
+    position: absolute;
+    background-color: var(--primary_color);
+    margin-left: 140px;
+    padding: 2px 4px;
+    border-radius: 4px 0px 0px 4px;
+    font-size: small;
+}
+
+.imageContainer{
+    width: 200px;
+    height: 320px;
+}
+
+.imageContainer img{
+    width: 200px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.show .name{
+    font-size: x-large;
+    font-weight: 600;
+    margin: 14px 0px;
+    text-align: center;
+}
+
+.tagContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 4px 10px;
+}
+
+.tagContainer .tag{
+    margin: 4px 2px;
+    padding: 2px 8px;
+    border: 1px solid var(--text_2);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.show .desc{
+    margin: 4px 10px;
+    margin-bottom: 20px;
+}
+
+.schedule_list{
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    margin: 4px 10px;
+}
+
+.schedule_list::-webkit-scrollbar{
+    width: 8px;
+}
+.schedule_list::-webkit-scrollbar-thumb  {
+  background: var(--surface_color);
+}
+
+.schedule_card{
+    min-width: 100px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    margin: 4px 6px;
+    border: 1px solid var(--primary_color);
+    border-radius: 4px;
+}
+
+.schedule_card .price{
+    font-size: large;
+    font-weight: 600;
+    color: greenyellow;
+}
+
+.schedule_card .time{
+    font-size: large;
+    color: var(--text_2);
+}
+
+.schedule_card .duration{
+    font-size: small;
+    color: var(--text_2);
+}
+
+.schedule_card .seats{
+    font-size: small;
+    color: var(--text_2);
+}
+
+.schedule_action{
+    margin: 4px 0px;
+}
+
+.add_venue{
+    background-color: greenyellow;
+    color: var(--surface_color);
+    transform: scale(1.1);
+}
+
+.venue_{
+    width: 80%;
+    padding: 10px;
+    text-align: center;
+    margin: auto;
+}
+
+.venue_ .name_{
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+.venue_ .location_{
+    font-size: large;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

@@ -1,0 +1,441 @@
+{%extends "base2.html" %} {%block content %}
+
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    #showContainer {
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        min-width: 400px;
+        margin-bottom: 3rem;
+        background-color: var(--surface_elevated);
+    }
+
+    #showContainer .image {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #showContainer .showDetails {
+        width: 70%;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        align-items: flex-start;
+        padding: 1rem 5rem;
+    }
+
+    .showDetails .name {
+        font-size: 3rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+    }
+
+    .showDetails .tags {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .showDetails .tags span {
+        margin: 0 0.75rem 0.5rem 0;
+        padding: 0.5rem 1rem;
+        background-color: var(--primary_color);
+        color: white;
+        border-radius: 0.2rem;
+    }
+
+    .showDetails .subDetails {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        margin: 2rem 0;
+    }
+
+    .showDetails .subDetails p {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0 1.5rem 0 0;
+    }
+
+    .showDetails .subDetails p:first-child {
+        font-weight: 600;
+    }
+
+    .duration{
+        display: flex;
+        align-items: center;
+    }
+
+    .duration img{
+        width: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+
+
+
+    #mainContainer {
+        padding: 2rem;
+        width: 95%;
+        max-width: 1100px;
+        min-width: 400px;
+        margin: 0 auto 3rem;
+        background-color: var(--surface_elevated);
+    }
+
+    #mainContainer #venueDetails {
+        margin-bottom: 2rem
+    }
+
+    #venueDetails h1 {
+        font-size: 3rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+        display: inline-block;
+        width: fit-content;
+        margin-right: 2rem;
+    }
+
+    #venueDetails .name span {
+        font-size: 1.5rem;
+    }
+
+    #venueDetails .city {
+        font-size: 1.5rem;
+    }
+
+    #venueDetails .location {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    #venuedetails::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 4px;
+        background-color: var(--primary_color);
+        margin: 2rem 0;
+    }
+
+    #scheduleDetails {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-bottom: 1rem;
+        text-align: center;
+
+    }
+
+    .heading {
+        font-size: 1.5rem;
+        font-weight: 400;
+        background-color: var(--primary_color);
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .heading>div {
+        padding: .5rem;
+        border: 2px solid black;
+    }
+
+    #scheduleContainer {
+        margin-bottom: 3rem;
+    }
+
+    #book_ticket {
+        border: 2px solid var(--primary_color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 400px;
+        max-width: 550px;
+        margin: 8rem auto 2rem;
+        padding: 1rem;
+    }
+
+    #book_ticket #available_seats {
+        font-size: 2rem;
+        font-weight: 400;
+        margin: 2rem 0;
+    }
+
+    #book_ticket #seats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        min-width: 370px;
+    }
+
+    #seats #input {
+        width: fit-content;
+    }
+
+    #seats #input input {
+        font-weight: 400;
+        padding: 0.5rem 0 .5rem .5rem;
+        border-radius: 0.2rem;
+        font-size: 1.5rem;
+        text-align: center;
+        background-color: var(--surface_color);
+        border: none;
+        margin-right: 1rem;
+    }
+
+    #seats #input input:focus {
+        outline: none;
+    }
+
+    #input span {
+        font-size: 1.5rem;
+    }
+
+    #seats button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.2rem;
+        font-size: 1.2rem;
+        background-color: var(--primary_color);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    #seats button:focus {
+        outline: none;
+    }
+
+    #seats button:active {
+        transform: scale(0.95);
+    }
+
+
+
+
+
+
+
+
+    @media screen and (min-width : 850px) and (max-width : 1150px) {
+        #showContainer .showDetails {
+            width: 60%;
+        }
+
+        #showContainer .image {
+            width: 40%;
+        }
+
+        #mainContainer #venueDetails {
+            text-align: center;
+        }
+
+
+    }
+
+
+    @media screen and (min-width: 500px) and (max-width : 850px) {
+
+        #showContainer {
+            flex-direction: column;
+        }
+
+        #showContainer .image {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #showContainer .showDetails {
+            margin-top: 2rem;
+            width: 100%;
+            align-items: center;
+        }
+
+        .showDetails .desc {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+
+
+
+
+        #mainContainer #venueDetails {
+            text-align: center;
+        }
+
+        #venueDetails .name {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 2rem;
+        }
+
+        .heading {
+            font-size: 1.2rem;
+        }
+
+    }
+
+    @media screen and (max-width : 500px) {
+        #showContainer .showDetails {
+            padding: 1rem 2rem;
+        }
+
+        .showDetails .subDetails {
+            width: fit-content;
+            margin: 1rem auto;
+        }
+
+        .showDetails .subDetails p {
+            font-size: 0.8rem;
+        }
+
+        .showDetails .name {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .showDetails .tags {
+            margin: 1rem auto 0;
+        }
+
+        #mainContainer #venueDetails {
+            text-align: center;
+        }
+
+        .heading {
+            font-size: 1.2rem;
+        }
+    }
+
+    @media screen and (max-width : 650px) {
+
+        #book_ticket #seats {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #book_ticket #seats #input {
+            margin: 0 0 2rem;
+        }
+    }
+</style>
+
+
+<div id="showContainer">
+
+    <div class="image">
+        <img src={{show.image_url}} alt={{show.name}}>
+    </div>
+
+    <div class="showDetails">
+        <p class="name">{{show.name}}</p>
+        <p class="tags">
+            {% for tag in show.tags %}
+            <span>{{tag}}</span>
+            {% endfor %}
+        </p>
+
+
+        <div class="subDetails">
+            <p class="rating">{{show.rating}}</p>
+            <p class="lang">{{schedule.language}}</p>
+            <div class="duration">
+                <img src="/static/media/clock.svg" alt="clock">
+                <div>{{schedule.end_time[10 : 16]}} - {{schedule.start_time[10 : 16]}}</div>
+            </div>
+        </div>
+
+        <p class="desc">{{show.description}}</p>
+    </div>
+
+</div>
+
+<div id="mainContainer">
+
+    <div id="venueDetails">
+        <h1 class="name">{{venue.name}} </h1>
+        <span> ({{venue.rating}})</span>
+        <div class="subdetails">
+            <div class="city">{{venue.city_town}}</div>
+            <div class="location">{{venue.location_desc}}</div>
+        </div>
+    </div>
+
+    <div id="scheduleContainer">
+        <div id="scheduleDetails" class="heading">
+            <div>Date</div>
+            <div>Starts at</div>
+            <div>Ends at</div>
+            <div>Price</div>
+        </div>
+
+        <div id="scheduleDetails">
+            <div class="date">{{schedule.start_time[0 : 10]}}</div>
+            <div class="Stime">{{schedule.start_time[10 : 16]}}</div>
+            <div class="Etime">{{schedule.end_time[10 : 16]}}</div>
+            <div class="price">Rs. {{schedule.price}}</div>
+        </div>
+    </div>
+
+    <div id="book_ticket">
+
+        <div id="available_seats">Available Seats : {{schedule.total_seats - schedule.booked_seats}}</div>
+
+        <div id="seats">
+            <div id="input">
+                <input id="seat_inp" type="number" name="seats" min="1" max="20" value="1" />
+                <span>Seats</span>
+            </div>
+            <div id="scheduleid" style="display: none;">{{schedule.scheduleid}}</div>
+            <button onclick="book_ticket()"> Book your Show </button>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script>
+
+    function book_ticket() {
+        let seats = document.getElementById("seat_inp").value;
+        let scheduleid = document.getElementById("scheduleid").innerHTML;
+        let username = localStorage.getItem("username");
+        let token = localStorage.getItem("token");
+        console.log(seats, scheduleid, username, token);
+        let data = {
+            "user_name": username,
+            "token": token,
+            "no_of_seats": seats,
+            "schedule_id": scheduleid
+        }
+
+        fetch("/api/booking", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                window.alert(data.message)
+            })
+
+    }
+
+</script>
+{% endblock %}

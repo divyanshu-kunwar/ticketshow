@@ -1,0 +1,245 @@
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0%;
+  position: relative;
+  transition: all 0.5s ease;
+
+  /*  */
+}
+html,
+body {
+  overflow-x: hidden;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.home_page {
+  height: fit-content;
+  width: 100%;
+}
+/* -----------------------NavBar------------------------- */
+#navbar {
+  align-items: center;
+  display: grid;
+  grid-template-areas: "logo blank blank navtools";
+  height: fit-content;
+  justify-items: center;
+  padding: 40px;
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  z-index: 10;
+}
+#nav_tools {
+  display: grid;
+  grid-area: navtools;
+  grid-column-gap: 20px;
+  grid-template-areas: "blank blank signIn signUp theme";
+  width: fit-content;
+}
+#logo {
+  grid-area: logo;
+}
+#signInBtn {
+  grid-area: signIn;
+  height: fit-content;
+  justify-self: center;
+}
+#signUpBtn {
+  grid-area: signUp;
+  height: fit-content;
+  justify-self: center;
+}
+#themeBtn {
+  cursor: pointer;
+  grid-area: theme;
+  height: 40px;
+  height: fit-content;
+  justify-self: center;
+  opacity: 0.7;
+  transition: all 1s ease;
+  width: 40px;
+}
+#themeBtn:hover {
+  opacity: 1;
+  scale: 1.05;
+}
+.bordered_btn {
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: small;
+  height: fit-content;
+  opacity: 0.8;
+  padding: 12px 15px;
+  width: fit-content;
+}
+.bordered_btn:hover {
+  opacity: 1;
+}
+
+
+
+/* ------------------------------------------ Footer ------------------ */
+#footer {
+  align-items: center;
+  border-top: 0.1px dashed;
+  column-gap: 4%;
+  display: grid;
+  grid-auto-columns: 0.9fr 1.2fr 0.9fr;
+  height: fit-content;
+  justify-content: center;
+  padding: 2% 5%;
+  position: relative;
+  row-gap: 5px;
+
+  grid-template-areas:
+    "logo about message"
+    "blank1 copyright blank2";
+}
+#footer_logo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-area: logo;
+}
+#footer_about {
+  grid-area: about;
+}
+#footer_msg {
+  grid-area: message;
+  width: 100%;
+}
+#msg_form {
+  display: grid;
+  grid-auto-columns: 85% 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 8px;
+
+  grid-template-areas:
+    "messagebox messagebox"
+    "emailinput submitinput";
+}
+#email_input {
+  border-radius: 4px;
+  border: 1px dashed;
+  grid-area: emailinput;
+  outline: none;
+  padding: 2% 5%;
+  width: 100%;
+}
+#message_box {
+  border-radius: 4px;
+  border: 1px dashed;
+  grid-area: messagebox;
+  outline: none;
+  padding: 4% 4%;
+  resize: none;
+}
+#submit_btn {
+  grid-area: submitinput;
+  position: relative;
+}
+#copyright {
+  grid-area: copyright;
+  text-align: center;
+}
+.show_feed_grid {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  #navbar {
+    align-items: center;
+    grid-template-areas: "logo navtools";
+  }
+  #nav_tools {
+    row-gap: 20px;
+    width: fit-content;
+
+    grid-template-areas:
+      " search search search search "
+      " blank theme signIn signUp ";
+  }
+}
+@media screen and (min-width: 501px) and (max-width: 800px) {
+  #navbar {
+    align-items: center;
+    row-gap: 20px;
+
+    grid-template-areas:
+      "logo"
+      "navtools";
+  }
+  #nav_tools {
+    row-gap: 20px;
+    width: fit-content;
+
+    grid-template-areas:
+      " signIn  signUp theme "
+      " search search search ";
+  }
+  #footer{
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+      "logo about about"
+      "message message message"
+      "copyright copyright copyright";
+  }
+  #footer_logo svg {
+    width: 160px;
+  }
+  #footer_logo p {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  #navbar {
+    align-items: center;
+    padding: 10% 0%;
+    row-gap: 30px;
+
+    grid-template-areas:
+      "logo"
+      "navtools";
+  }
+  #nav_tools {
+    row-gap: 30px;
+    width: fit-content;
+
+    grid-template-areas:
+      " signIn signUp theme"
+      " search search search";
+  }
+  #footer {
+    grid-template-areas:
+      "logo"
+      "about"
+      "message"
+      "copyright";
+  }
+}
+#measure {
+  background-color: #9900ff11;
+  border: 1px dashed #8400ff55;
+  color: #8c00ff;
+  display: none;
+  height: 12px;
+  position: fixed;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+}
+#measure_Y {
+  background-color: #9900ff11;
+  border: 1px dashed #8400ff55;
+  color: #8c00ff;
+  display: none;
+  height: 100%;
+  left: 50%;
+  position: fixed;
+  top: 0%;
+  width: 12px;
+}

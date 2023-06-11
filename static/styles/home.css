@@ -1,0 +1,195 @@
+#center_content {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  grid-template-areas:
+    "boychar content1 content1 girlchar"
+    "boychar content2 content2 girlchar";
+}
+#content1 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-area: content1;
+  justify-content: center;
+}
+#content2 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  grid-area: content2;
+  justify-content: center;
+}
+.center_top_msg {
+  font-size: min(6vw, 60px);
+  font-weight: bold;
+  margin-top: 3%;
+  text-align: center;
+  width: 100%;
+}
+#center_top_submsg {
+  align-self: center;
+  font-size: min(3vw, 20px);
+  margin-top: 4%;
+  text-align: center;
+  width: min(800px, 90%);
+}
+#boy_char {
+  align-items: flex-end;
+  display: flex;
+  grid-area: boychar;
+  justify-content: flex-start;
+  width: 100%;
+}
+#boy_char img {
+  object-fit: contain;
+  width: max(100%, 370px);
+}
+#girl_char {
+  align-items: flex-end;
+  display: flex;
+  grid-area: girlchar;
+  justify-content: flex-end;
+  width: 100%;
+}
+#girl_char img {
+  object-fit: cover;
+  width: max(115%, 410px);
+}
+#show_feed {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
+#feedback_container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  height: fit-content;
+  margin-top: 12%;
+  overflow-x: hidden;
+  width: min(780px, 95%);
+}
+.feedbacks {
+  align-self: center;
+  border-radius: 4px;
+  height: fit-content;
+  padding: 20px 50px;
+  width: min(680px, 90%);
+}
+.feedbacks h3 {
+  font-weight: 100;
+  margin: 4px 0px 12px 0px;
+}
+.feed_author {
+  font-weight: bold;
+  margin: 10px 0px 0px 0px;
+  text-align: right;
+  width: 100%;
+}
+.feedbacks[data-position="2"] {
+  transition: left 1s ease-in-out;
+}
+.feedbacks[data-position="3"],
+.feedbacks[data-position="1"] {
+  position: absolute;
+  transition: left 1s ease-in-out;
+}
+#feedback_slide_control {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 20px;
+}
+#feedback_slide_control div {
+  border-radius: 50%;
+  cursor: pointer;
+  height: 10px;
+  margin: 0px 5px;
+  width: 10px;
+}
+.show_feed_grid {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.fwidth_cards {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 5px;
+  padding-bottom: 10px;
+  width: 180px;
+}
+.fwidth_cards span {
+  display: block;
+  font-size: small;
+  padding: 4px 15px;
+}
+.fwidth_cards p {
+  display: block;
+  font-weight: bold;
+  margin: 0%;
+  padding: 10%;
+  padding: 15px;
+}
+.heading_browse {
+  margin-bottom: 100px;
+}
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  #center_content {
+    grid-template-areas:
+      "boychar content1 content1"
+      "boychar content2 content2";
+  }
+  #girl_char {
+    display: none;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 800px) {
+  #center_content {
+    grid-template-areas:
+      "content1"
+      "boychar"
+      "content2";
+  }
+  #girl_char {
+    display: none;
+  }
+  #boy_char {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  #boy_char img {
+    align-self: center;
+    object-fit: contain;
+    width: 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  #center_content {
+    grid-template-areas:
+      "content1"
+      "boychar"
+      "content2";
+  }
+  #girl_char {
+    display: none;
+  }
+  #boy_char {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  #boy_char img {
+    align-self: center;
+    object-fit: contain;
+    width: 50%;
+  }
+}

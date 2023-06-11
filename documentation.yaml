@@ -1,0 +1,1073 @@
+openapi: 3.0.0
+info:
+  title: ticketshow
+  description: >-
+    # Introduction
+
+    Ticket Show is a web platform to book ticket for shows in cinema hall near
+    you. This webapp is a bit of experiment with design and simplicity as a
+    project for Modern App Development-1 course.
+
+
+    # Overview
+
+    This is the API documentation for the project
+
+    ### API
+
+    + /api/user
+
+    + /api/admin
+
+    + /api/shows
+
+    + /api/venue
+
+    + /api/bookings
+
+
+    # Authentication
+
+    Password and JWT token
+
+  version: 1.0.0
+servers:
+  - url: localhost://
+tags:
+  - name: user
+  - name: admin
+  - name: shows
+  - name: venue
+  - name: schedule
+  - name: booking
+  - name: search
+  - name: filter
+paths:
+  /api/user/signup:
+    post:
+      tags:
+        - user
+      summary: signup
+      description: creates a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Div
+                email: kdivyanshu@gmail.com
+                password: 1234abcdef@
+      responses:
+        '500':
+          description: INTERNAL SERVER ERROR
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Fri, 17 Mar 2023 20:47:31 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '197'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userid: 2
+                username: Div6435
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRpdjY0MzUiLCJleHAiOjE2Nzk2OTA4NTF9.zJYjcNSWfJR34EwGgU3LdTuJVgSU6_9OU1pd51-WlUg
+  /api/user/signin:
+    get:
+      tags:
+        - user
+      summary: signin
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:04:06 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '197'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                userid: 4
+                username: Div4896
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRpdjQ4OTYiLCJleHAiOjE2Nzk5Mjk0NDZ9.hpjaNQlyB4tACukRA5mkMrRLTGaGv9DK4RgNQpwtKiA
+  /api/user/signout:
+    get:
+      tags:
+        - user
+      summary: signout
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/user:
+    put:
+      tags:
+        - user
+      summary: user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: Div8908
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRpdjg5MDgiLCJleHAiOjE2Nzk5Mjg2NzJ9.29YLDrGFQg9CMMoEJKt_LwNx4ei624nLr4nLo5ygVf4
+                name: Divyanshu Kunwar
+                email: kdivyanshu@gmail.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - user
+      summary: user
+      description: Get the user detail
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - user
+      summary: user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/user/4:
+    get:
+      tags:
+        - user
+      summary: user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/signup:
+    post:
+      tags:
+        - admin
+      summary: signup
+      description: creates a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Divyanshu Kunwar
+                email: kdivyanshu3@gmail.com
+                password: 1234abc@
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:05:32 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '229'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                adminid: 1
+                adminname: DivyanshuKunwar5861
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI1ODYxIiwiZXhwIjoxNjc5OTI5NTMyfQ.ljXcNjrsTW7bazBcpBYZxN-wOpQySTMIDsD5IENWg24
+  /api/admin/signin:
+    get:
+      tags:
+        - admin
+      summary: signin
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:10:42 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '229'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                adminid: 1
+                adminname: DivyanshuKunwar5861
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI1ODYxIiwiZXhwIjoxNjc5OTI5ODQyfQ.Ba4BdYNCVZV6rAQ80iOP9rkvdLSnSZirCesol40-dJw
+  /api/admin/signout:
+    get:
+      tags:
+        - admin
+      summary: signout
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:10:03 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '45'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: Logged Out Successfully
+  /api/admin:
+    put:
+      tags:
+        - admin
+      summary: admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                adminname: DivyanshuKunwar5861
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI1ODYxIiwiZXhwIjoxNjc5OTI5OTIyfQ.hd7kIIC4iyzbjkW9G9p3aNLIA9tKEwQf_JoXUg-OxgE
+                name: Divyanshu
+                email: kdivyanshu@gmail.com
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:14:53 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '123'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                adminid: 1
+                adminname: DivyanshuKunwar5861
+                name: Divyanshu
+                email: kdivyanshu@gmail.com
+    delete:
+      tags:
+        - admin
+      summary: admin
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - admin
+      summary: admin
+      description: Get the user detail
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 15:16:04 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '123'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                adminid: 1
+                adminname: DivyanshuKunwar5861
+                name: Divyanshu
+                email: kdivyanshu@gmail.com
+  /api/shows:
+    delete:
+      tags:
+        - shows
+      summary: show
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - shows
+      summary: show
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                adminname: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjc5OTQ0MDI2fQ.xvkEpEtf2nGWme-C1JJFdy3qAPLgEW7mj-svhHXiQYA
+                name: Avatar2
+                image: >-
+                  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsjdy8oZ5vSkSPYyFKVYlBNE3g_nKNKpyd66pRYxCufxaOlklQiIEPGDuCTuDWeiefv_o&usqp=CAU
+                description: >-
+                  Avatar: The Way of Water is a 2022 American epic science
+                  fiction film directed and produced by James Cameron.
+                tags:
+                  - hollywood
+                  - action
+                  - drama
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 19:19:32 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '87'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                showid: 1
+                name: Avatar2
+                message: show created successfully
+    put:
+      tags:
+        - shows
+      summary: show
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                showid: 1
+                adminname: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjc5OTQ0MDI2fQ.xvkEpEtf2nGWme-C1JJFdy3qAPLgEW7mj-svhHXiQYA
+                name: Avatar - The Way Of Water
+                image: >-
+                  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsjdy8oZ5vSkSPYyFKVYlBNE3g_nKNKpyd66pRYxCufxaOlklQiIEPGDuCTuDWeiefv_o&usqp=CAU
+                description: >-
+                  This is a 2022 American epic science fiction film directed and
+                  produced by James Cameron.
+                tags:
+                  - hollywood
+                  - action
+                  - drama
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 19:30:35 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '105'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                showid: 1
+                name: Avatar - The Way Of Water
+                message: show updated successfully
+  /api/shows/2:
+    get:
+      tags:
+        - shows
+      summary: show_detail
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 20 Mar 2023 20:21:42 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '446'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                showid: 2
+                name: Avatar2
+                image_url: >-
+                  https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsjdy8oZ5vSkSPYyFKVYlBNE3g_nKNKpyd66pRYxCufxaOlklQiIEPGDuCTuDWeiefv_o&usqp=CAU
+                rating: 40
+                no_of_ratings: 0
+                description: >-
+                  Avatar: The Way of Water is a 2022 American epic science
+                  fiction film directed and produced by James Cameron.
+                tags:
+                  - hollywood
+                  - action
+                  - drama
+  /api/venue/1:
+    get:
+      tags:
+        - venue
+      summary: venue_detail
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/venue:
+    delete:
+      tags:
+        - venue
+      summary: venue
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 04:00:13 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '66'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                venueid: 2
+                message: venue deleted successfully
+    post:
+      tags:
+        - venue
+      summary: venue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                admin_name: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjgwMjAyNDYwfQ.W2iQqv-YC5YKYMq4U68oVA8sVwsKFwdO4eo9EjOCzsE
+                name: KM CinePlex
+                city_town: Tezpur
+                location_desc: chir , town
+                coordinates:
+                  - 1030.45
+                  - 20.345
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 03:58:59 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '93'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                venueid: 2
+                name: KM CinePlex
+                message: venue created successfully
+    put:
+      tags:
+        - venue
+      summary: venue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                admin_name: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjgwMjAyNDYwfQ.W2iQqv-YC5YKYMq4U68oVA8sVwsKFwdO4eo9EjOCzsE
+                venue_id: 1
+                name: KM CinePlex
+                city_town: Buxar
+                location_desc: near shyam ji mandir , nga bay  road
+                coordinates:
+                  - 100.45
+                  - 20.45
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 03:58:02 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '93'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                venueid: 1
+                name: KM CinePlex
+                message: venue updated successfully
+  /api/schedule:
+    post:
+      tags:
+        - schedule
+      summary: schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                admin_name: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjgwNjAzNTQxfQ.qW5h0kaaK6i8c9tr4S-Q7fUKljPUf2IxFTi_wY1sz_U
+                venue_id: 4
+                show_id: 7
+                language: Hindi
+                total_seats: 50
+                start_time: 31/03/2023/14/00
+                end_time: 31/03/2023/16/20
+                price: 180
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 14:40:25 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '72'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                scheduleid: 1
+                message: schedule created successfully
+    get:
+      tags:
+        - schedule
+      summary: schedule
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 14:47:43 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '214'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                scheduleid: 1
+                venue_id: 1
+                show_id: 2
+                language: English
+                total_seats: 40
+                booked_seats: 0
+                start_time: '2023-03-27 12:00:00'
+                end_time: '2023-03-27 14:30:00'
+    delete:
+      tags:
+        - schedule
+      summary: schedule
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - schedule
+      summary: schedule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                admin_name: DivyanshuKunwar4431
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbm5hbWUiOiJEaXZ5YW5zaHVLdW53YXI0NDMxIiwiZXhwIjoxNjgwMjAyNDYwfQ.W2iQqv-YC5YKYMq4U68oVA8sVwsKFwdO4eo9EjOCzsE
+                schedule_id: 1
+                venue_id: 1
+                show_id: 2
+                language: English
+                total_seats: 40
+                start_time: 27/03/2023/12/00
+                end_time: 27/03/2023/14/30
+                price: 1999
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 14:45:31 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '72'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                scheduleid: 1
+                message: schedule updated successfully
+  /api/booking:
+    get:
+      tags:
+        - booking
+      summary: booking
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 17:04:54 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '84'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                bookingid: 2
+                userid: 4
+                no_of_seats: 1
+                schedule_id: 1
+    post:
+      tags:
+        - booking
+      summary: booking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                user_name: Div4896
+                token: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRpdjQ4OTYiLCJleHAiOjE2Nzk5Mjk0NDZ9.hpjaNQlyB4tACukRA5mkMrRLTGaGv9DK4RgNQpwtKiA
+                user_id: 4
+                schedule_id: 1
+                no_of_seats: 1
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 17:04:44 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '70'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                bookingid: 2
+                message: booking created successfully
+    delete:
+      tags:
+        - booking
+      summary: booking
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Sun, 26 Mar 2023 17:04:38 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '50'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                message: booking deleted successfully
+  /api/search/shows:
+    get:
+      tags:
+        - search
+      summary: schedule
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/filters:
+    get:
+      tags:
+        - filter
+      summary: filter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - filter
+      summary: filter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tagname: New Delhi
+                tagtype: city
+      responses:
+        '200':
+          description: OK
+          headers:
+            Server:
+              schema:
+                type: string
+                example: Werkzeug/2.2.3 Python/3.9.13
+            Date:
+              schema:
+                type: string
+                example: Mon, 27 Mar 2023 16:52:45 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json
+            Content-Length:
+              schema:
+                type: integer
+                example: '113'
+            Connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 2
+                tagname: Hindi
+                tagtype: language
+                message: filter created successfully
+  /api/filters/14:
+    delete:
+      tags:
+        - filter
+      summary: filter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

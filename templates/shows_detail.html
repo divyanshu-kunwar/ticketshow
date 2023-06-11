@@ -1,0 +1,61 @@
+{%extends "base2.html" %} 
+{% block title %}
+{{ show.name }}
+{% endblock %} {%
+block content %}
+
+<link href="/static/styles/shows_detail.css" rel="stylesheet" type="text/css" />
+<div id="show_page">
+  
+  <div id="show_detail">
+    <h2>{{ show.name }}</h2>
+    <div id="show_feature">
+      <div id="show_certificate">{{ show.rating/10 }}</div>
+      <img id="show_poster" src="{{ show.image_url }}" />
+      <div id="tags">
+        {% for tag in show.tags %}
+        <span>{{tag}}</span>
+        {% endfor %}
+      </div>
+      <div id="show_description">{{ show.description }}</div>
+    </div>
+  </div>
+
+  <div id="ticket_container">
+    {% for schedule_ in schedule %}
+    <div class="ticket">
+      <div class="venue_details">
+        <div class="name"> {{schedule[schedule_].name}} </div>
+        <div class="address">
+          {{schedule[schedule_].location_desc}},
+          {{schedule[schedule_].city_town}}
+        </div>
+        <div class="rating">{{schedule[schedule_].rating/10}}</div>
+      </div>
+
+      <div class="dates_container">
+        {% for slots in schedule[schedule_].schedules %}
+        <div class="date">
+          <a href="/book/new/{{slots.scheduleid}}">
+          <div class="show_details">
+            <div class="date">{{slots.start_time[0:10]}}</div>
+            <div class="time">{{slots.start_time[10:]}}</div>
+            <div class="duration"></div>
+            <div class="available">{{slots.total_seats - slots.booked_seats}}</div>
+            <div class="language">{{slots.language}}</div>
+            <div class="price">₹ {{slots.price}}</div>
+            <div class="price">{{slots.duration}}</div>
+            <h2>
+              Book Now
+            </h2>
+          </div></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+{% endblock %}

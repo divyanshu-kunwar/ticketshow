@@ -1,0 +1,96 @@
+:root{
+      --input-background : #01010105;
+      --input-border : #01010133;
+      --primary_color : #0011ff;
+      --shadow-col : #fcd5d5;
+      --surface_color : #FFF0F0;
+      --surface_elevated : #ffffff;
+
+    --text_1 : #000000;
+    --text_2 : #000000aa;
+  }
+body{
+      background-color: var(--surface_color);
+      color: var(--text_1);
+  }
+#searchbar{
+      background-color: var(--surface_elevated);
+      color: var(--text_2);
+  }
+.wide_btn , .bordered_btn{
+      background-color: var(--primary_color);
+      color: var(--surface_color);
+  }
+#navbar{
+      background-color: var(--surface_color);
+  }
+.feedbacks{
+      background-color: var(--surface_elevated);
+      color: var(--text_2);
+  }
+#feedback_container h3{
+      color: var(--text_1);
+  }
+#feedback_slide_control div{
+      background-color: var(--text_2);
+  }
+#feedback_slide_control div[data-active="true"]{
+      background-color: var(--text_1);
+  }
+#search_col_icon{
+      fill: var(--text_2);
+  }
+.logo_col{
+      fill: var(--text_2);
+  }
+.logo_primary_col{
+      fill: var(--primary_color);
+  }
+#email_input , #message_box{
+      background-color: var(--surface_elevated);
+      border-color: var(--text_2);
+  }
+#navbar{
+      box-shadow:0px 4px 50px var(--shadow-col);
+  }
+#sign_in_pop{
+      background-color: var(--surface_elevated);
+      color: var(--text_2);
+  }
+#sign_up_pop{
+      background-color: var(--surface_elevated);
+      color: var(--text_2);
+  }
+.input_group input{
+      background-color: var(--input-background);
+      border-color: var(--input-border);
+      color: var(--text_2);
+  }
+input , textarea{
+      background-color: var(--surface_elevated);
+      color: var(--text_2);
+  }
+.sign_in_sign_up_in h1{
+      color: var(--text_2);
+  }
+.pop_tabs .selected{
+      color: var(--primary_color);
+  }
+.forgot_pass{
+      color: var(--primary_color);
+  }
+.sign_up_msg span{
+      color: var(--primary_color);
+  }
+#pop_up{
+      backdrop-filter: blur(2px);
+      background-color: #ffffff44;
+  }
+
+  #top_tabs .selected{
+    color: var(--primary_color);
+  }
+
+  #sidebar{
+    background-color: var(--surface_elevated);
+  }

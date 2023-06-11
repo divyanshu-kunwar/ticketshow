@@ -1,0 +1,163 @@
+{%extends "base3.html" %} {% block title %} {{selected_venue_detail}} {%endblock
+%} {%block content %}
+<link rel="stylesheet" href="/static/styles/schedule(admin).css" />
+<div id="venueid" style="display: none;">{{venue_detail.venueid}}</div>
+<div id="main_area">
+
+  <div id="venue_detail_area">
+    <div class="name">{{ venue_detail.name }}</div>
+
+    <div class="location_desc">{{ venue_detail.location_desc}}</div>
+
+    <div class="city">{{ venue_detail.city_town }}</div>
+
+    <div class="rating">
+      {% for i in range((venue_detail.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" />
+      {% endfor %} {% for i in range(5 - (venue_detail.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" class="gray_star" />
+      {% endfor %}
+      <span>
+        {{ venue_detail.rating/10 }} ({{ venue_detail.no_of_rating }})
+      </span>
+    </div>
+  </div>
+
+
+  <div id="schedule_form">
+
+    <div class="container">
+
+      <div class="label">
+        <select name="show" id="show">
+          {% for show in shows %}
+          <option value="{{show.showid}}">
+            {{show.name}}
+          </option>
+          {% endfor %}
+        </select>
+    
+        <a class="bordered_btn" href="/admin/show/add">Add new Show</a>
+      </div>
+
+  
+      <div class="label">
+        <select name="location" id="location">
+          {% for language in languages %}
+          <option value="{{language.tagname}}">
+            {{language.tagname}}
+          </option>
+          {% endfor %}
+        </select>
+    
+        <div class="bordered_btn" onclick="addLanguage()">Add new Language</div>
+      </div>
+  
+      <div id="inputContainer">
+        <input type="datetime-local" name="start_time" id="start_time" />
+        <input type="int" name="price" id="price" placeholder="Price" />
+        <input type="int" name="no_of_tickets" id="no_of_tickets" placeholder="No of Tickets" />
+        <input type="int" name="duration" id="duration" placeholder="Duration in minutes" />
+      </div>
+  
+  
+      <div class="bordered_btn" id="submit" onclick="createSchedule()">Submit</div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+    function createSchedule(){
+      let showid = document.getElementById("show").value;
+      let language = document.getElementById("location").value;
+      let start_time = document.getElementById("start_time").value;
+      let price = document.getElementById("price").value;
+      let no_of_tickets = document.getElementById("no_of_tickets").value;
+      let duration = document.getElementById("duration").value;
+      let venueid = parseInt(document.getElementById("venueid").innerHTML);
+      let adminname = localStorage.getItem("adminname");
+      let token = localStorage.getItem("token");
+      // add duration to start time
+      // dd/mm/YYYY/hh/MM
+      start_time = new Date(start_time);
+      let endtime = start_time;
+
+      start_time = start_time.getDate() + "/" + (start_time.getMonth()+1) + "/" + start_time.getFullYear() + "/" + start_time.getHours() + "/" + start_time.getMinutes();
+      console.log(start_time);
+
+      endtime = endtime.getTime() + duration*60*1000;
+      endtime = new Date(endtime);
+      console.log(endtime);
+      let endtime_str = endtime.getDate() + "/" + (endtime.getMonth()+1) + "/" + endtime.getFullYear() + "/" + endtime.getHours() + "/" + endtime.getMinutes();
+
+      let data = {
+        show_id: parseInt(showid),
+        language: language,
+        start_time: start_time,
+        end_time: endtime_str,
+        price: parseInt(price),
+        total_seats: parseInt(no_of_tickets),
+        venue_id: parseInt(venueid),
+        admin_name: adminname,
+        token: token
+      }
+
+      fetch("/api/schedule/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Success:", data);
+          window.alert(data["message"]);
+          window.location.href = "/admin/dashboard/?id=" + venueid;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+      console.log(data);
+
+
+    }
+
+    function addLanguage(){
+
+    let language = prompt("Please enter new Language", "New Language");
+    if (language != null) {
+      let data = {
+        admin_name: localStorage.getItem("adminname"),
+        token: localStorage.getItem("token"),
+        tagname: language,
+        tagtype: 'language'
+      }
+
+      fetch("/api/filters/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+          window.alert(data.message);
+          window.location.href = "/admin/schedule/add/?id={{venue_detail.venueid}}" ;
+        });
+
+    }
+
+    }
+
+</script>
+
+{% endblock %}

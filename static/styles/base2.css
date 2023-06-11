@@ -1,0 +1,159 @@
+/* -----------------------NavBar------------------------- */
+#nav_tools {
+  display: grid;
+  grid-area: navtools;
+  grid-column-gap: 20px;
+  grid-template-areas: "search search theme profile";
+  width: fit-content;
+}
+
+#profile_circle {
+  grid-area: profile;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profile_circle img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+#searchbar {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  font-size: small;
+  grid-area: search;
+  height: fit-content;
+  justify-content: space-between;
+  padding: 10px 15px;
+  width: 320px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  #nav_tools {
+    row-gap: 20px;
+    width: fit-content;
+    grid-template-areas: "search search theme profile";
+  }
+
+  #searchbar {
+    width: 320px;
+  }
+
+  #profile_circle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  #profile_circle img {
+    width: 40px;
+    height: 40px;
+  }
+
+}
+@media screen and (min-width: 501px) and (max-width: 800px) {
+  #nav_tools {
+    row-gap: 20px;
+    width: fit-content;
+    grid-template-areas: "search search search theme profile";
+  }
+
+  #searchbar {
+    width: 320px;
+  }
+
+  #profile_circle {
+    width: 40px;
+    height: 40px;
+  }
+  
+  #profile_circle img {
+    width: 40px;
+    height: 40px;
+  }
+
+}
+@media screen and (max-width: 500px) {
+  #nav_tools {
+    row-gap: 30px;
+    width: fit-content;
+
+    grid-template-areas:
+      "blank theme profile"
+      "search search search";
+  }
+
+  #searchbar {
+    width: 260px;
+  }
+}
+
+
+#searchbar input{
+  width: 100%;
+  background-color: transparent;
+  height: 30px;
+  outline: none;
+  border: none;
+}
+
+#search_popup{
+  width: 400px;
+  max-width: 400px;
+  position: absolute;
+  margin-top: 50px;
+  background-color: var(--surface_elevated);
+  padding: 20px;
+}
+
+.show_res{
+  display: grid;
+  grid-template-areas: 'name image'
+  'desc image';
+  grid-template-columns: 1fr 70px;
+  padding: 10px;
+  margin: 2px 0px;
+  background-color: #ddff0004;
+  border-radius: 4px;
+}
+
+.show_res .name{
+  grid-area: name;
+  font-size: x-large;
+  margin: 5px 0px;
+}
+
+.show_res .desc{
+  font-size: small;
+  grid-area: desc;
+}
+
+.show_res .image{
+  grid-area: image;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  object-fit: cover;
+}
+
+.venue_res{
+  padding: 10px;
+  margin: 2px 0px;
+  background-color: #ffdd0004;
+  border-radius: 4px;
+}
+
+.venue_res .name{
+  font-size: x-large;
+  margin: 5px 0px;
+}
+
+.venue_res .desc{
+  font-size: small;
+  margin: 8px 0px;
+}
+

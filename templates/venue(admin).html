@@ -1,0 +1,165 @@
+{%extends "base3.html" %} 
+
+{% block title %} 
+{% for venue in venue_all %} 
+{% if selected_venue == venue.venueid %} 
+{{ venue.name }} 
+{% endif %}
+{% endfor %}
+
+{% if selected_venue == None %}
+Venues
+{% endif %}
+
+{%endblock %} {%block content %}
+
+<link rel="stylesheet" href="/static/styles/venue(admin).css" />
+
+<div id="mainContainer">
+
+  <div id="venue_selection_area">
+    
+    <a href="/admin/venue/add/">
+      <div class="venue add_venue">
+        <div class="name">Create</div>
+        <div class="location">New Venue</div>
+      </div>
+    </a>
+
+    {% for venue in venue_all %} 
+    {% if selected_venue == venue.venueid %}
+    {% else %}
+    <a href="/admin/dashboard/?id={{venue.venueid}}">
+      <div class="venue">
+        <div class="name">{{venue.name}}</div>
+        <div class="location">{{venue.city_town}}</div>
+      </div>
+    </a>
+    {% endif %} {% endfor %}
+
+  </div>
+  
+  {% for venue in venue_all %}
+   {% if selected_venue == venue.venueid %}
+  <div id="venue_detail_area">
+
+    <div class="actions">
+      <a class="_btn" href="/admin/venue/edit/{{venue.venueid}}">
+        <img src="/static/media/edit_icon.svg" alt="" />
+      </a>
+
+      <a class="_btn" 
+      onclick="showPrompt('/api/venue/?id={{venue.venueid}}')">
+        <img src="/static/media/delete_icon.svg" alt="" />
+      </a>
+    </div>
+
+    <div class="name">{{ venue.name }}</div>
+
+    <div class="location_desc">{{ venue.location_desc}}</div>
+
+    <div class="city">{{ venue.city_town }}</div>
+
+    <div class="rating">
+      {% for i in range((venue.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" />
+      {% endfor %} {% for i in range(5 - (venue.rating/10)|round|int) %}
+      <img src="/static/media/star.svg" alt="" class="gray_star" />
+      {% endfor %} 
+      <span>
+      {{ venue.rating/10 }} ({{ venue.no_of_rating }})
+    </span>
+    </div>
+
+    <div class="actions">
+      <a class="_btn summary_btn"
+        href="/admin/venue/summary/?id={{venue.venueid}}">
+        <img src="/static/media/summary_icon.svg" alt="" />
+        <span>Summary</span>
+      </a>
+    </div>   
+    
+    <a href="/admin/schedule/add/?id={{selected_venue}}">
+      <div class="venue_ add_venue">
+        <div class="name_">Schedule</div>
+        <div class="location_">New Show</div>
+      </div>
+    </a>
+  </div>
+  {% endif %} {% endfor %}
+
+  
+  <div id="show_container_area">
+    
+    
+    {% for show in shows %}
+    <div class="show">
+      <div class="imageContainer">
+        <img src="{{shows[show].image_url}}" alt="" />
+      </div>
+      
+      <div class="ratingContainer">
+        <span class="rating">
+          {{shows[show].rating/10}}
+          <img src="/static/media/star.svg" alt="" />
+        </span>
+        
+        (<span class="noOfRating">{{shows[show].no_of_ratings}}</span>)
+      </div>
+      
+      <div class="name">{{shows[show].name}}</div>
+      
+      <div class="tagContainer">
+        <!-- {% for tag in shows[show].tags %}
+          <div class="tag">{{tag}}</div>
+          {% endfor %} -->
+        </div>
+        
+        <div class="desc flexible">
+          {{ shows[show].description[0:80] }} 
+          {% if shows[show].description|length > 80 %} ... {% endif %}
+        </div>
+        
+        <div class="schedule_list">
+          {%for schedule in shows[show].schedules %}
+          <div class="schedule_card">
+            
+            <div class="schedule_action actions">
+              <a class=" _btn" href="/admin/schedule/edit/{{schedule.scheduleid}}">
+                <img src="/static/media/edit_icon.svg" alt="" />
+              </a>
+              
+              <a class="_btn" 
+              onclick='showPrompt("/api/schedule/?id={{schedule.scheduleid}}")'>
+              <img src="/static/media/delete_icon.svg" alt="" />
+            </a>
+          </div>
+          
+          <div class="time">{{schedule.start_time[0:10]}}</div>
+          <div>
+            <div class="language">{{schedule.language }}</div>
+            <div class="duration">{{schedule.duration}}</div>
+          </div>
+          <div class="seats">{{schedule.total_seats - schedule.booked_seats}}</div>
+          <div class="price">${{schedule.price}}</div>
+          
+          <!-- {{schedule}} -->
+
+          </div>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+    {% endfor %}
+        
+  </div>
+  
+</div>
+
+{% if selected_venue == None %}
+  <h3 class="center"> OOps! there is no venue </h3>
+{% endif %}
+
+{% endblock %}
