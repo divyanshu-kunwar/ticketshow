@@ -285,5 +285,5 @@ def admin_edit_schedule(id):
             languages=languages)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
