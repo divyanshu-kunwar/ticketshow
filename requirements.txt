@@ -18,12 +18,11 @@ kiwisolver==1.4.4
 livereload==2.6.3
 MarkupSafe==2.1.2
 matplotlib
-numpy==1.24.2
-packaging==23.0
-pandas==2.0.0
-Pillow==9.5.0
-plotly==5.14.1
-pycparser==2.21
+numpy
+packaging
+pandas
+plotly
+pycparser
 PyJWT==2.6.0
 pyparsing==3.0.9
 python-dateutil==2.8.2
