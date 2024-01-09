@@ -2,6 +2,8 @@
 Ticket Show is a web platform to book ticket for shows in cinema hall near you. This webapp is a bit of experiment with design and simplicity as a project for Modern App Development-1 course.
 ## See Live at [https://ts.div.nerlex.com](https://ts.div.nerlex.com)
 ![image](https://github.com/KUNWAR-DIVYANSHU/ticketshow/assets/68821907/4e08ff7a-7560-4b19-b5d7-a3e8deb8bddc)
+
+Video Demo at YouTube - [@kunwar_divyanshu](https://youtu.be/_XLosw7jAI0)
 ## create a virtual environment
     
     ```bash
